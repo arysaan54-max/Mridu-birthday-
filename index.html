@@ -197,7 +197,15 @@ function floatHearts(duration=10000, dense=false){
 }
 function showLetter(){show('letterScreen');fireworks(2400,3,'flower');}
 $('openEnvelope').addEventListener('click',begin);$('openBtn').addEventListener('click',begin);
-function begin(){show('loveScreen');fireworks(3600,5,'sparkle');}
+function begin(){
+  show('loveScreen');
+  const music = document.getElementById('bgMusic');
+  if(music){
+    music.volume = 0.65;
+    music.play().catch(()=>{});
+  }
+  fireworks(3600,5,'sparkle');
+}
 $('toTree').addEventListener('click',()=>{show('treeScreen');fireworks(1800,3,'gold');});
 $('toLetter').addEventListener('click',showLetter);
 $('toGuess').addEventListener('click',()=>{show('guessScreen');fireworks(1800,3,'sparkle');});
@@ -212,5 +220,8 @@ $('checkGuess').addEventListener('click',()=>{
 });
 ['guess1','guess2','guess3'].forEach((id,i)=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter'){if(i<2)$('guess'+(i+2)).focus();else $('checkGuess').click();}}));
 </script>
+<audio id="bgMusic" src="romantic-dream-piano.mp3" loop preload="auto"></audio>
+</body>
+</html>
 </body>
 </html>
